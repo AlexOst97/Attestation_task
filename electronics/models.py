@@ -29,8 +29,8 @@ class Contacts(models.Model):
                                       verbose_name="Время создания")
 
     class Meta:
-        verbose_name = "Поставщик"
-        verbose_name_plural = "Поставщики"
+        verbose_name = "Контакт"
+        verbose_name_plural = "Контакты"
 
     def __str__(self):
         return f"{self.id} {self.email}"
