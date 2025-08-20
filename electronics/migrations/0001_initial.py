@@ -8,54 +8,157 @@ class Migration(migrations.Migration):
 
     initial = True
 
-    dependencies = [
-    ]
+    dependencies = []
 
     operations = [
         migrations.CreateModel(
-            name='Contacts',
+            name="Contacts",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('email', models.EmailField(max_length=254, verbose_name='Email')),
-                ('country', models.CharField(blank=True, max_length=100, null=True, verbose_name='Страна')),
-                ('city', models.CharField(blank=True, max_length=100, null=True, verbose_name='Город')),
-                ('street', models.CharField(blank=True, max_length=100, null=True, verbose_name='Улица')),
-                ('house_number', models.CharField(blank=True, max_length=25, null=True, verbose_name='Номер дома')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Время создания')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("email", models.EmailField(max_length=254, verbose_name="Email")),
+                (
+                    "country",
+                    models.CharField(
+                        blank=True, max_length=100, null=True, verbose_name="Страна"
+                    ),
+                ),
+                (
+                    "city",
+                    models.CharField(
+                        blank=True, max_length=100, null=True, verbose_name="Город"
+                    ),
+                ),
+                (
+                    "street",
+                    models.CharField(
+                        blank=True, max_length=100, null=True, verbose_name="Улица"
+                    ),
+                ),
+                (
+                    "house_number",
+                    models.CharField(
+                        blank=True, max_length=25, null=True, verbose_name="Номер дома"
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Время создания"
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Поставщик',
-                'verbose_name_plural': 'Поставщики',
+                "verbose_name": "Поставщик",
+                "verbose_name_plural": "Поставщики",
             },
         ),
         migrations.CreateModel(
-            name='Product',
+            name="Product",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='Название продукта')),
-                ('model', models.CharField(max_length=255, verbose_name='Модель')),
-                ('release_date', models.DateField(verbose_name='Дата выхода на рынок')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=255, verbose_name="Название продукта"),
+                ),
+                ("model", models.CharField(max_length=255, verbose_name="Модель")),
+                ("release_date", models.DateField(verbose_name="Дата выхода на рынок")),
             ],
             options={
-                'verbose_name': 'Продукт',
-                'verbose_name_plural': 'Продукты',
+                "verbose_name": "Продукт",
+                "verbose_name_plural": "Продукты",
             },
         ),
         migrations.CreateModel(
-            name='Network',
+            name="Network",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('name', models.CharField(max_length=255, verbose_name='Название сети')),
-                ('type', models.CharField(choices=[(0, 'Завод'), (1, 'Розничная сеть'), (2, 'Индивидуальный предприниматель')], max_length=50, verbose_name='Тип сети')),
-                ('arrears', models.DecimalField(decimal_places=2, default=0.0, max_digits=10, verbose_name='Задолженность перед поставщиком')),
-                ('created_at', models.DateTimeField(auto_now_add=True, verbose_name='Время создания')),
-                ('contacts', models.OneToOneField(on_delete=django.db.models.deletion.CASCADE, related_name='network_contacts', to='electronics.contacts', verbose_name='Контакты')),
-                ('supplier', models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='network_supplier', to='electronics.network', verbose_name='Поставщик')),
-                ('product', models.ManyToManyField(related_name='network_product', to='electronics.product', verbose_name='Продукты')),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                (
+                    "name",
+                    models.CharField(max_length=255, verbose_name="Название сети"),
+                ),
+                (
+                    "type",
+                    models.CharField(
+                        choices=[
+                            (0, "Завод"),
+                            (1, "Розничная сеть"),
+                            (2, "Индивидуальный предприниматель"),
+                        ],
+                        max_length=50,
+                        verbose_name="Тип сети",
+                    ),
+                ),
+                (
+                    "arrears",
+                    models.DecimalField(
+                        decimal_places=2,
+                        default=0.0,
+                        max_digits=10,
+                        verbose_name="Задолженность перед поставщиком",
+                    ),
+                ),
+                (
+                    "created_at",
+                    models.DateTimeField(
+                        auto_now_add=True, verbose_name="Время создания"
+                    ),
+                ),
+                (
+                    "contacts",
+                    models.OneToOneField(
+                        on_delete=django.db.models.deletion.CASCADE,
+                        related_name="network_contacts",
+                        to="electronics.contacts",
+                        verbose_name="Контакты",
+                    ),
+                ),
+                (
+                    "supplier",
+                    models.ForeignKey(
+                        blank=True,
+                        null=True,
+                        on_delete=django.db.models.deletion.SET_NULL,
+                        related_name="network_supplier",
+                        to="electronics.network",
+                        verbose_name="Поставщик",
+                    ),
+                ),
+                (
+                    "product",
+                    models.ManyToManyField(
+                        related_name="network_product",
+                        to="electronics.product",
+                        verbose_name="Продукты",
+                    ),
+                ),
             ],
             options={
-                'verbose_name': 'Торговая сеть',
-                'verbose_name_plural': 'Торговые сети',
+                "verbose_name": "Торговая сеть",
+                "verbose_name_plural": "Торговые сети",
             },
         ),
     ]
